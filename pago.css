@@ -137,7 +137,7 @@ input:valid ~ label {
 
 
 .logi1 .c1{
-    margin-left: 23%;
+    margin-left: 29%;
     text-align: center;
     position: relative;
     display: inline-block;
@@ -209,6 +209,11 @@ input:valid ~ label {
     bottom: 100%;
     transition: 1s;
     transition-delay: 0.75s;
+}
+.terminar{
+    font-size: 24px;
+    background: transparent;
+    border: none;
 }
 /*------------------------------*/
 .logi1 .register-link{
