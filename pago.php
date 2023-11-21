@@ -24,7 +24,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicia Sesion</title>
-    <link rel="stylesheet" href="pago.css">
+    <link rel="stylesheet" href="assets/css/pago.css">
 </head>
 <body>
     <main class="c2">
@@ -65,7 +65,7 @@
                 </div>
                 
                 <div class="register-link">
-                    <p>No tienes dinero? <a href="#">regresar</a></p><br>
+                    <p>No tienes dinero? <a href="/">regresar</a></p><br>
                 </div>
             </form>
         </div>
