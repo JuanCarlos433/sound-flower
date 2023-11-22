@@ -1,3 +1,18 @@
+<?php
+    session_start();
+    /*
+    if(!isset($_SESSION['id'])|| !$_SESSION['id']){
+        header('Location: login.html');
+    }
+    */
+    require_once('assets/php/conexion.php');
+    mysqli_set_charset($conn,'utf8');
+    $usuario=$_SESSION['id'];
+    $sql="SELECT * FROM usuarios WHERE Id = '$usuario'";
+    $envio=mysqli_query($conn,$sql);
+    $mostrar = mysqli_fetch_array($envio)
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +28,7 @@
                 <img src="assets/img/cat.jpeg" alt="">
             </article>
             <article class="nombre_perfil">
-                <h1>Nombre_Usuario</h1>
+                <h1> <?php echo $mostrar['Nombre']; ?> </h1>
             </article>
         </section>
         
