@@ -55,7 +55,7 @@ if(!isset($_SESSION['id']) || $_SESSION['tipo'] != 0){
                 </a> 
     
                 <div class="register-link">
-                    <p>No tienes dinero? <a href="/">regresar</a></p><br>
+                    <p>No tienes dinero? <a href="#">regresar</a></p><br>
                 </div>
             </form>
         </div>
