@@ -108,7 +108,6 @@
                             </article>
                         </article>
                         </a>
-
                     <?php } ?>
                 <?php } ?>
             <?php } ?>
