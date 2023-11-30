@@ -220,6 +220,9 @@
                             <ul class="box_Covers_Container">
                                 <?php
                                     $artistas = "SELECT * FROM artistas WHERE Id_Disquera = '$mainid'";
+                                    if($search) {
+                                        $artistas .= " AND Nombre LIKE '%$buscar%'";
+                                    }
                                     $envio = mysqli_query($conn, $artistas);
                                     if(mysqli_num_rows($envio) > 0){
                                         while($mostrar = mysqli_fetch_assoc($envio)){
@@ -262,6 +265,9 @@
                                             $idA = $mostrarA['Id'];
 
                                             $albumes = "SELECT * FROM albumes WHERE Id_Artista = '$idA'";
+                                            if($search) {
+                                                $albumes .= " AND Nombre LIKE '%$buscar%'";
+                                            }
                                             $envioAL = mysqli_query($conn, $albumes);
 
                                             while($mostrarAL = mysqli_fetch_array($envioAL)){
@@ -313,6 +319,9 @@
                                                 $img1 = $mostrarAL['Portada'];
 
                                                 $canciones = "SELECT * FROM canciones WHERE Id_Album = '$idAL'";
+                                                if($search) {
+                                                    $canciones .= " AND Nombre LIKE '%$buscar%'";
+                                                }
                                                 $envioC = mysqli_query($conn, $canciones);
 
                                                 while($mostrarC = mysqli_fetch_array($envioC)){
@@ -360,6 +369,9 @@
                             </a>
                             <?php
                                 $playlists = "SELECT * FROM playlists WHERE Id_Usuario = '$mainid'";
+                                if($search) {
+                                    $playlists .= " AND Nombre LIKE '%$buscar%'";
+                                }
                                 $envioPL = mysqli_query($conn, $playlists);
                                 while($mostrarPL = mysqli_fetch_array($envioPL)){
                             ?>
@@ -396,7 +408,7 @@
                             ?>
                             <ul class="box_Covers_Container">
                                 <?php
-                                    if (mysqli_num_rows($envioALU) > 0){ //el usuario SI tiene albumes favoritos
+                                    if (mysqli_num_rows($envioALU) > 0 && !$search){ //el usuario SI tiene albumes favoritos
                                         while ($mostrarAlU = mysqli_fetch_array($envioALU)){ 
                                             $id1 = $mostrarAlU['Id_Album'];
                                             
@@ -420,6 +432,9 @@
                                     }
                                     else{ //el usuario NO tiene albumes favoritos
                                         $allIds = "SELECT id FROM albumes";
+                                        if($search) {
+                                            $allIds .= " WHERE Nombre LIKE '%$buscar%'";
+                                        }
                                         $idResult = mysqli_query($conn, $allIds);
                                         
                                         if(mysqli_num_rows($idResult) <= 0){
@@ -433,7 +448,7 @@
 
                                             shuffle($ids);
 
-                                            for($i = 0; $i < 10; $i++){ 
+                                            for($i = 0; $i < 10 && $i < count($ids); $i++){
                                                 $randomId = $ids[$i];
 
                                                 $query = "SELECT * FROM albumes WHERE id = '$randomId'";
@@ -481,7 +496,7 @@
                             ?>
                             <ul class="box_Covers_Container">
                             <?php
-                                    if (mysqli_num_rows($envioARU) > 0){ //el usuario SI tiene artistas favoritos
+                                    if (mysqli_num_rows($envioARU) > 0 && !$search){ //el usuario SI tiene artistas favoritos
                                         while ($mostrarARU = mysqli_fetch_array($envioARU)){ 
                                             $idAF = $mostrarARU['Id_Artista'];
 
@@ -506,6 +521,9 @@
                                     }
                                     else{ //el usuario NO tiene artistas favoritos
                                         $allIds2 = "SELECT DISTINCT Id FROM artistas";
+                                        if($search) {
+                                            $allIds2 .= " WHERE Nombre LIKE '%$buscar%'";
+                                        }
                                         $idResult2 = mysqli_query($conn, $allIds2);
 
                                         if(mysqli_num_rows($idResult2) <= 0){
@@ -555,6 +573,9 @@
                             <ul class="box_Covers_Container">
                                 <?php
                                     $allIds3 = "SELECT id FROM canciones";
+                                    if($search) {
+                                        $allIds3 .= " WHERE Nombre LIKE '%$buscar%'";
+                                    }
                                     $idResult3 = mysqli_query($conn, $allIds3);
                                     
                                     if(mysqli_num_rows($idResult3) <= 0){
@@ -569,7 +590,7 @@
                                         shuffle($ids3);
 
 
-                                        for($i = 0; $i < 10; $i++){ 
+                                        for($i = 0; $i < 10 && $i < count($ids3); $i++){ 
                                             $randomId3 = $ids3[$i];
 
                                             $query3 = "SELECT * FROM canciones WHERE id = '$randomId3'";
